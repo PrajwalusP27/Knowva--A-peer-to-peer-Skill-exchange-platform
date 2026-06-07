@@ -72,6 +72,7 @@ const io = new Server(server, {
       "GET",
       "POST",
     ],
+    credentials: true,
   },
 });
 
@@ -85,7 +86,12 @@ let onlineUsers = [];
 // ==========================================
 // MIDDLEWARE
 // ==========================================
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
